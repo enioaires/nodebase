@@ -1,14 +1,16 @@
 import prisma from "@/lib/db";
 import { createTRPCRouter, protectedProcedure } from "../init";
-import { z } from "zod";
+import { inngest } from "@/inngest/client";
 
 export const appRouter = createTRPCRouter({
-  getAccount: protectedProcedure.query(({ ctx }) => {
-    return prisma.user.findUnique({
-      where: {
-        id: ctx.auth.user.id,
-      },
+  getWorkflows: protectedProcedure.query(({ ctx }) => {
+    return prisma.workflow.findMany();
+  }),
+  createWorkflow: protectedProcedure.mutation(async () => {
+    await inngest.send({
+      name: "prisma/create.workflow",
     });
+    return { success: true, message: "job queued" };
   }),
 });
 
