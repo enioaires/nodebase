@@ -1,9 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
-import * as React from "react";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -19,11 +15,16 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import * as React from "react";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import * as z from "zod";
 
 const signInSchema = z.object({
   email: z.email("Please enter a valid email address"),
@@ -80,6 +81,12 @@ export const SignInForm: React.FC = () => {
                     type="button"
                     disabled={isPending}
                   >
+                    <Image
+                      alt="github"
+                      src="/logos/github.svg"
+                      width={20}
+                      height={20}
+                    />
                     Continue with Github
                   </Button>
                   <Button
@@ -88,6 +95,12 @@ export const SignInForm: React.FC = () => {
                     type="button"
                     disabled={isPending}
                   >
+                    <Image
+                      alt="google"
+                      src="/logos/google.svg"
+                      width={20}
+                      height={20}
+                    />
                     Continue with Google
                   </Button>
                 </div>
@@ -134,7 +147,7 @@ export const SignInForm: React.FC = () => {
                   Don't have an account?{" "}
                   <Link
                     href="/sign-up"
-                    className="underline underline-offset-4 hover:font-semibold"
+                    className="underline underline-offset-4 hover:text-primary"
                   >
                     Register
                   </Link>
