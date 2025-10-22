@@ -4,3 +4,6 @@ procs:
 
   app:
     cmd: ["bun", "run", "dev"]
+
+  studio:
+    cmd: ["bunx", "prisma", "studio"]
