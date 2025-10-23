@@ -3,12 +3,15 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { polarClient } from "@/lib/polar";
+import superjson from "superjson"
 
 export const createTRPCContext = cache(async () => {
   return { userId: "user_123" };
 });
 
-const t = initTRPC.create({});
+const t = initTRPC.create({
+  transformer: superjson
+});
 
 export const createTRPCRouter = t.router;
 export const createCallerFactory = t.createCallerFactory;
