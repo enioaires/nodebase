@@ -1,9 +1,15 @@
 procs:
+  database:
+    shell: docker compose up
+    stop: SIGTERM
+    autostart: true
+
+  next:
+    shell: npm run dev
+    stop: SIGTERM
+    autostart: true
+
   inngest:
-    cmd: ["bun", "run", "inngest:dev"]
-
-  app:
-    cmd: ["bun", "run", "dev"]
-
-  studio:
-    cmd: ["bunx", "prisma", "studio"]
+    shell: npm run inngest:dev
+    stop: SIGTERM
+    autostart: true
