@@ -9,10 +9,17 @@ import {
   SearchIcon,
   TrashIcon,
 } from "lucide-react";
-import { Button } from "./ui/button";
 import Link from "next/link";
-import { ReactNode } from "react";
-import { Input } from "./ui/input";
+import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "./ui/button";
+import { Card, CardContent, CardDescription, CardTitle } from "./ui/card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 import {
   Empty,
   EmptyContent,
@@ -21,14 +28,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "./ui/empty";
-import { cn } from "@/lib/utils";
-import { Card, CardContent, CardDescription, CardTitle } from "./ui/card";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+import { Input } from "./ui/input";
 
 type EntityHeaderProps = {
   title: string;
@@ -230,7 +230,7 @@ interface EntityListProps<T> {
   className?: string;
 }
 
-export const EntityList = <T extends unknown>({
+export const EntityList = <T,>({
   items,
   renderItem,
   getKey,

@@ -7,6 +7,8 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "biome check",
+    "lint:src": "biome check --write --unsafe --max-diagnostics=100 ./src",
+    "lint:check": "biome check ./src",
     "format": "biome format --write",
     "inngest:dev": "inngest-cli dev",
     "dev:all": "mprocs"

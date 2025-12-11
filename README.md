@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nodebase
 
-## Getting Started
+## Como Rodar
 
-First, run the development server:
+### Pré-requisitos
 
+- Node.js 20+
+- PostgreSQL
+- npm, yarn, pnpm ou bun
+
+### Configuração
+
+1. Clone o repositório:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <url-do-repositorio>
+cd nodebase
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as dependências:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Configure as variáveis de ambiente:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
-## Learn More
+```env
+# Database
+DATABASE_URL="postgresql://usuario:senha@host:porta/database?sslmode=require"
 
-To learn more about Next.js, take a look at the following resources:
+# Authentication
+BETTER_AUTH_SECRET="sua-chave-secreta-aqui"
+BETTER_AUTH_URL="http://localhost:3000"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# AI Providers (opcional - configure pelo menos um)
+GOOGLE_GENERATIVE_AI_API_KEY="sua-key-do-google"
+OPENAI_API_KEY="sua-key-da-openai"
+ANTHROPIC_API_KEY="sua-key-da-anthropic"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Polar (pagamentos)
+POLAR_ACCESS_TOKEN="seu-token-do-polar"
+POLAR_SUCCESS_URL="http://localhost:3000"
 
-## Deploy on Vercel
+# Sentry (opcional)
+SENTRY_AUTH_TOKEN="seu-token-do-sentry"
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Execute as migrações do banco de dados:
+```bash
+npx prisma migrate dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Gere o cliente do Prisma:
+```bash
+npx prisma generate
+```
+
+### Executando o Projeto
+
+#### Modo Desenvolvimento
+
+Para rodar apenas o Next.js:
+```bash
+npm run dev
+```
+
+Para rodar Next.js + Inngest simultaneamente:
+```bash
+npm run dev:all
+```
+
+A aplicação estará disponível em [http://localhost:3000](http://localhost:3000).
+
+#### Modo Produção
+
+```bash
+npm run build
+npm start
+```
+
+### Scripts Disponíveis
+
+- `npm run dev` - Inicia o servidor de desenvolvimento Next.js
+- `npm run dev:all` - Inicia Next.js e Inngest simultaneamente
+- `npm run build` - Cria build de produção
+- `npm run start` - Inicia servidor de produção
+- `npm run lint` - Executa o linter (Biome)
+- `npm run format` - Formata o código
+- `npm run inngest:dev` - Inicia apenas o Inngest dev server

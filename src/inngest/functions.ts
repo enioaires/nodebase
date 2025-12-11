@@ -1,10 +1,9 @@
-import { inngest } from "./client";
+import { createAnthropic } from "@ai-sdk/anthropic";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { createOpenAI } from "@ai-sdk/openai";
-import { createAnthropic } from "@ai-sdk/anthropic";
 import * as Sentry from "@sentry/nextjs";
-
 import { generateText } from "ai";
+import { inngest } from "./client";
 
 const google = createGoogleGenerativeAI();
 const openai = createOpenAI();

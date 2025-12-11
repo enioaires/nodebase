@@ -1,5 +1,5 @@
-import { PAGINATION } from "@/config/constants";
 import { parseAsInteger, parseAsString } from "nuqs/server";
+import { PAGINATION } from "@/config/constants";
 
 const { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } = PAGINATION;
 
